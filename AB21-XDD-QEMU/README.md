@@ -1,6 +1,6 @@
-# XPU Device Driver for AB21-QEMU/AB21-FPGA
+# XPU Device Driver for AB21-QEMU
 
-The XPU device driver (XDD) of this project is a SW, running on the Host system, developed by the Supercomputing Technology Research Center to execute the parallel operation kernel operation of the parallel application program written in the OpenCL programming model on the XPU device, which is an emulated operation accelerator based on QEMU. The main functions and features provided by XDD are as follows.
+The XPU device driver (AB21-XDD-QEMU) of this project is a SW, running on the Host system, developed by the Supercomputing Technology Research Center to execute the parallel operation kernel operation of the parallel application program written in the OpenCL programming model on the XPU device, which is an emulated operation accelerator based on QEMU. The main functions and features provided by AB21-XDD-QEMU are as follows.
  * XPU device registration/initialization/setting management
  * XPU device context management
  * Parallel operation queue management
@@ -8,7 +8,7 @@ The XPU device driver (XDD) of this project is a SW, running on the Host system,
  * Event Management
  * XPU device memory allocation and management
 ## Overview
-* This source code directory of XDD includes 
+* This source code directory of AB21-XDD-QEMU includes 
 	- XPU Driver Library (XDL)
 	- XPU Hig-level Driver (XHD)
 	- XPU Platform Driver (XPD)
@@ -16,11 +16,11 @@ The XPU device driver (XDD) of this project is a SW, running on the Host system,
 * To cross compile for AArch64 (AB21Q)
 * Tested on x86_64 host.
 * This is not fully debugged.
-* XDD can run on the AB21Q virtual machine. So, AB21Q needs to to build and installed before running XDD.
+* AB21-XDD-QEMU can run on the AB21Q virtual machine. So, AB21Q needs to to build and installed before running AB21-XDD-QEMU.
 
 ## Directories
 ```
-XDD                                     --> XPU Device Driver (XDD) and XPU Platform Driver (XPD)
+AB21-XDD-QEMU                                     --> XPU Device Driver (XDD) and XPU Platform Driver (XPD)
     ├── linux-source-5.4.0              --> Ubuntu kernel source
     └── xdlib                           --> XPU Driver Library (XDL) 
         └── test                        --> XDL-test application          
@@ -51,15 +51,15 @@ XDD                                     --> XPU Device Driver (XDD) and XPU Plat
 
 	- before kernel compile and build, you shoud download kernel source code (https://www.kernel.org)
 ```
-$ cd XDD/linux-5.4.0
+$ cd AB21-XDD-QEMU/linux-5.4.0
 $ cp ../u20_config .config 
 $ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j `nproc`
 $ cd ..
 ```
 
-* Build XDD (in supreme-k-poc/XDD)
+* Build AB21-XDD-QEMU (in Supreme-K/AB21-XDD-QEMU)
 ```
-$ cd XDD
+$ cd AB21-XDD-QEMU
 $ make all
 $ ls
 	xd.ko                             # driver module 
@@ -74,7 +74,7 @@ $ ls
 
 ## Usage 
 
-## How to run XDD
+## How to run AB21-XDD-QEMU
 
 * run AB21Q virtual machine image (in supreme-k-poc/ab21sim/ab21tsim/QEMU/qemu_test/test_ubuntu/)
 	```
@@ -85,11 +85,11 @@ $ ls
 * in AB21Q virtual machine, copy XDD files from host 
 	- use scp or sftp to your host in virtual machine
 	- files to copy
-		- XDD/xd.ko
-		- XDD/xdlib/test/test
-		- XDD/xdlib/test/axpu_kernel_binary
+		- AB21-XDD-QEMU/xd.ko
+		- AB21-XDD-QEMU/xdlib/test/test
+		- AB21-XDD-QEMU/xdlib/test/axpu_kernel_binary
 
-* load XDD module and execute XDL-test program
+* load AB21-XDD-QEMU module and execute XDL-test program
 	```
 	$ sudo insmod xd.ko
 	$ ./test axpu_kernle_binary
@@ -106,7 +106,7 @@ $ ls
 <br>
 
 ## Version 
-* XDD 2.0.0 / 2022.12.15
+* AB21-XDD-QEMU 2.0.0 / 2022.12.15
 <br>
 <br>
 
